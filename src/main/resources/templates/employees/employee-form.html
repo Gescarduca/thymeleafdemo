@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <title>Add employee</title>
+
+    <div class="container">
+        <!--Form is load and uses getter methods  when we submit it uses setter methods-->
+
+        <h3>Employee Directory</h3>
+        <hr>
+
+        <p class="h4 mb-4">Save Employee</p>
+
+        <!--Add hidden form field to handle update, we need this hidden field to bind the data to the model attribute and tell the app
+        which employee to update, it is required for any update form-->
+        <form action="#" th:action="@{/employees/save}"
+                        th:object="${employee}" method="POST">
+            <input type="hidden" th:field="*{id}"/>
+            <!--th:field="*{firstName}" select propertry on referenced th:object//basically from this object getFirstName-->
+            <input type="text" th:field="*{firstName}"
+            class="form-control mb-4 col-4" placeholder="First Name">
+            <input type="text" th:field="*{lastName}"
+                   class="form-control mb-4 col-4" placeholder="Last Name">
+            <input type="text" th:field="*{email}"
+                   class="form-control mb-4 col-4" placeholder="Email">
+
+            <button type="submit" class="btn btn-info col-2">Save</button>
+
+            <a th:href="@{/employees/list}">
+                Back to employees list
+            </a>
+        </form>
+    </div>
+</head>
+<body>
+
+</body>
+</html>
