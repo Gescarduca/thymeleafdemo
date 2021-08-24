@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EmployeeDao extends JpaRepository<EmployeeImp,Integer> {
@@ -22,4 +23,7 @@ public interface EmployeeDao extends JpaRepository<EmployeeImp,Integer> {
     @Query("from EmployeeImp where concat(lastName,email,firstName) like %?1%")
     List<EmployeeImp> findAllByName(@Param("keyword") String keyword);
     //List<EmployeeImp> findEmployeeImpByLastNameContains(String lastName);
+
+    Optional<EmployeeImp> findEmployeeImpByUsername(String username);
+
 }

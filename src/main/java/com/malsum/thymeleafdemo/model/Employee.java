@@ -9,6 +9,14 @@ public interface Employee {
 
     void setEmail(String email);
 
+    void setUserName(String username);
+
+    void setPassword(String password);
+
+    void setRoles(String roles);
+
+    void setActive(boolean active);
+
     String toString();
 
     int getId();
@@ -18,4 +26,14 @@ public interface Employee {
     String getLastName();
 
     String getEmail();
+
+    String getUserName();
+
+    String getPassword();
+
+    String getRoles();
+
+    boolean isActive();
+
+
 }
