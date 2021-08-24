@@ -48,14 +48,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/employees/showForm*").hasAnyRole("MANAGER", "ADMIN")
                 .antMatchers("/employees/save*").hasAnyRole("MANAGER", "ADMIN")
                 .antMatchers("/employees/delete").hasRole("ADMIN")
-                .antMatchers("/employees/**").hasRole("EMPLOYEE")
+                .antMatchers("/employees/**").hasAnyRole("EMPLOYEE","MANAGER","ADMIN")
                 .antMatchers("/resources/**").permitAll()
                 .and()
                     .formLogin()
                     .loginPage("/showLoginPage")//tells spring security to expect a custom page at this url, hence it stops creating a default page
                     .loginProcessingUrl("/authenticateUser") //tell spring security to process the credentials and send the user back to the page he came from by default
                         //https://stackoverflow.com/questions/36782990/spring-security-doesnt-post-to-provided-login-processing-url
-                    .defaultSuccessUrl("/employees/list",true)
+                    .defaultSuccessUrl("/index.html",true)
                 .permitAll()
                 .and()
                 .logout().permitAll()

@@ -26,10 +26,10 @@ public class JpaConfig {
         return dataSourceBuilder.build();
     }
 
-    @Bean
-    @ConfigurationProperties(prefix="security.datasource")
-    public DataSource securityDataSource() {
-        return DataSourceBuilder.create().build();
-    }
+//    @Bean
+//    @ConfigurationProperties(prefix="security.datasource")
+//    public DataSource securityDataSource() {
+//        return DataSourceBuilder.create().build();
+//    }
 
 }
