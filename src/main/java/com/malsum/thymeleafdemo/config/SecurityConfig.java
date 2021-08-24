@@ -39,8 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .formLogin()
                     .loginPage("/showLoginPage")//tells spring security to expect a custom page at this url, hence it stops creating a default page
-                    //.loginProcessingUrl("/authenticateUser")
-                    .defaultSuccessUrl("/hello",true)
+                    .loginProcessingUrl("/authenticateUser") //tell spring security to process the credentials and send the user back to the page he came from by default
+                        //https://stackoverflow.com/questions/36782990/spring-security-doesnt-post-to-provided-login-processing-url
+                    .defaultSuccessUrl("/employees/list",true)
                 .permitAll()
                 .and()
                 .logout().permitAll()
