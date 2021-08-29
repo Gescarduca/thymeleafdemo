@@ -1,8 +1,10 @@
 package com.malsum.thymeleafdemo.model;
 
+import com.malsum.thymeleafdemo.CustomAnnotations.BasicRole;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
@@ -22,12 +24,14 @@ public class EmployeeImp{
     @Column(name = "password")
     private String password;
     @Column(name = "first_name")
+    @NotEmpty(message = "first name cannot be empty")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "email")
     private String email;
     @Column(name = "roles")
+    @BasicRole()
     private String roles;
     @Column(name = "active")
     private boolean active;

@@ -1,7 +1,10 @@
 package com.malsum.thymeleafdemo.controller;
 
 
+import com.malsum.thymeleafdemo.model.Employee;
+import com.malsum.thymeleafdemo.model.EmployeeImp;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -18,5 +21,7 @@ public class LoginController {
     public String showAccessDenied() {
         return "access-denied";
     }
+
+
 
 }

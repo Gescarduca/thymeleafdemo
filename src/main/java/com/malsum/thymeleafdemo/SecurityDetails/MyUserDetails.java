@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
@@ -20,6 +21,8 @@ public class MyUserDetails implements UserDetails {
     private boolean active;
     private List<GrantedAuthority> authorities;
 
+    Logger myLogger = Logger.getLogger(Logger.getGlobal().getName());
+
     public MyUserDetails(EmployeeImp employee) {
         this.username = employee.getUsername();
         this.password = employee.getPassword();
@@ -27,11 +30,17 @@ public class MyUserDetails implements UserDetails {
         this.authorities = Arrays.stream(employee.getRoles().split(","))
                 .map(SimpleGrantedAuthority:: new)
                 .collect(Collectors.toList());
+        if (employee.getRoles() == null){
+            myLogger.warning(employee.getRoles());
+            employee.setRoles("ROLE_EMPLOYEE");
+        }
+        myLogger.warning(employee.getRoles());
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        //return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        return authorities;
     }
 
     @Override
